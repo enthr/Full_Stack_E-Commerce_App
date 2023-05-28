@@ -1,14 +1,14 @@
-import mongoose from "mongoose";
-import app from "./app.js";
-import config from "./config/index.js";
+import mongoose from 'mongoose';
+import app from './app.js';
+import config from './config/index.js';
 
 (async () => {
     try {
         await mongoose.connect(config.MONGODB_URL);
-        console.log("DB CONNECTED");
+        console.log('DB CONNECTED');
 
-        app.on("error", (err) => {
-            console.error("ERROR: ", err);
+        app.on('error', (err) => {
+            console.error('ERROR: ', err);
             throw err;
         });
 
@@ -18,7 +18,7 @@ import config from "./config/index.js";
 
         app.listen(config.PORT, onListening);
     } catch (err) {
-        console.error("ERROR: ", err);
+        console.error('ERROR: ', err);
         throw err;
     }
 })();
