@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         enum: Object.values(authRoles),
-        default: authRoles.USER
+        default: authRoles.BUYER
     },
     contact: {
         type: String,
