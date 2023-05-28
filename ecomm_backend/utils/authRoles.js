@@ -1,7 +1,7 @@
 const AuthRoles = {
     ADMIN: 'ADMIN',
     SELLER: 'SELLER',
-    BUYER: 'BUYER',
+    BUYER: 'BUYER'
 };
 
 export default AuthRoles;
