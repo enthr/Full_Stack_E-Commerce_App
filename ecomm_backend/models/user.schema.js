@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Contact is Required'],
         validate: {
             validator: function (value) {
-                return isMobilePhone(value, 'any');
+                return isMobilePhone(value, 'any', { strictMode: true });
             },
             message: 'Invalid Contact Number'
         }
@@ -64,35 +64,36 @@ const userSchema = new mongoose.Schema({
         }
     },
     addresses: [{
-        type: Object,
+        type: {
+            label: {
+                type: String,
+                required: [true, 'Label is Required']
+            },
+            line1: {
+                type: String,
+                required: [true, 'Street is Required']
+            },
+            line2: {
+                type: String
+            },
+            city: {
+                type: String,
+                required: [true, 'City is Required']
+            },
+            state: {
+                type: String,
+                required: [true, 'State is Required']
+            },
+            country: {
+                type: String,
+                required: [true, 'Country is Required']
+            },
+            pincode: {
+                type: String,
+                required: [true, 'Pincode is Required']
+            }
+        },
         required: [true, 'Address is Required'],
-        label: {
-            type: String,
-            required: [true, 'Label is Required']
-        },
-        street1: {
-            type: String,
-            required: [true, 'Street is Required']
-        },
-        street2: {
-            type: String
-        },
-        city: {
-            type: String,
-            required: [true, 'City is Required']
-        },
-        state: {
-            type: String,
-            required: [true, 'State is Required']
-        },
-        country: {
-            type: String,
-            required: [true, 'Country is Required']
-        },
-        pincode: {
-            type: String,
-            required: [true, 'Pincode is Required']
-        }
     }],
     status: {
         type: String,
