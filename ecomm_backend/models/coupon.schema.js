@@ -19,22 +19,23 @@ const couponSchema = new mongoose.Schema({
         enum: ['ACTIVE', 'INACTIVE']
     },
     discount: {
-        type: Object,
+        type: {
+            method: {
+                type: String,
+                enum: ['PERCENTAGE', 'FIXED']
+            },
+            value: {
+                type: Number,
+                required: [true, 'Value is required']
+            },
+            maxDiscount: {
+                type: Number
+            },
+            minOrderValue: {
+                type: Number
+            }
+        },
         required: [true, 'Discount is required'],
-        method: {
-            type: String,
-            enum: ['PERCENTAGE', 'FIXED']
-        },
-        value: {
-            type: Number,
-            required: [true, 'Value is required']
-        },
-        maxDiscount: {
-            type: Number
-        },
-        minOrderValue: {
-            type: Number
-        }
     },
     expiry: {
         type: Date,
@@ -42,7 +43,7 @@ const couponSchema = new mongoose.Schema({
     },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Seller'                 
+        ref: 'Seller'
     }
 }, { timestamps: true });
 
