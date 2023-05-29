@@ -11,19 +11,14 @@ const categorySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product'
     }],
-    status: {
+    description: {
         type: String,
-        enum: ['ACTIVE', 'INACTIVE'],
-        default: 'ACTIVE'
+        trim: true
     },
-    isSubCategory: {
-        type: Boolean,
-        default: false
-    },
-    parentCategory: {
+    subcategories: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category'
-    }
+        ref: 'Subcategory'
+    }]
 }, { timestamps: true });
 
 export default mongoose.model('Category', categorySchema);
