@@ -45,6 +45,7 @@ tokenSchema.methods = {
 
             // Save the hash token and expiresAt and start the token expiration
             this.token = hashToken;
+            this.status = 'ACTIVE';
             this.expiresAt = Date.now() + config.TOKEN_EXPIRY;
             this.startTokenExpiration();
 
@@ -67,6 +68,7 @@ tokenSchema.methods = {
                 const isTokenValid = await argon2.verify(this.token, receivedToken);
                 if (isTokenValid) {
                     this.status = 'USED';
+                    this.expiresAt = Date.now();
                     clearInterval(this.expireTokenInterval);
                 }
                 return isTokenValid;
