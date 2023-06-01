@@ -135,8 +135,6 @@ userSchema.methods = {
         try {
             return await generateJWTAync({
                 id: this._id,
-                name: this.fullName,
-                email: this.email,
                 role: this.role,
                 status: this.status
             }, config.JWT_SECRET, {
